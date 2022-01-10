@@ -46,23 +46,28 @@ var app = new Vue({
         buildQueryRegex: function(){
             var queryRegex = "";
             var includeLetters = "";
+            var includeLetterPositions = "";
             for (var i = 0; i < this.query.length; i++) {
                 var letter = this.query[i];
                 if(letter === "?"){
                     queryRegex += ".";
+                    includeLetterPositions += "."
                 }else{
                     if(i+1 <= this.query.length && this.query[i+1] === "*"){
                         includeLetters += letter.toLowerCase();
+                        includeLetterPositions += "[^" + letter.toLowerCase() + "]"
                         queryRegex += ".";
                         i += 1;
                     }else{
+                        includeLetterPositions += ".";
                         queryRegex += letter.toLowerCase();
                     }
                 }
             }
             var excludeRegex = this.excludeLetters.length > 0 ? "(?!.*[" + this.excludeLetters.toLowerCase() + "])" : "";     
             var includeRegex = includeLetters.length > 0 ? "(?=.*[" + includeLetters.toLowerCase() + "])" : "";
-            return new RegExp("^" + excludeRegex + includeRegex + queryRegex + "$");
+            var includeLetterPositionRegex = includeLetters.length > 0 ? "(?=" + includeLetterPositions + ")" : "";
+            return new RegExp("^" + excludeRegex + includeRegex + includeLetterPositionRegex + queryRegex + "$");
         }
     }
 })
