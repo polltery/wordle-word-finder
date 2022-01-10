@@ -19,10 +19,11 @@ public class WordReader {
             while (sc.hasNextLine()) {
                 String text = sc.nextLine();
                 if(text.matches("^[a-zA-Z]{5}$")){
-                    System.out.println(text + ",");
+                    System.out.println("\"" + text "\"" + ",");
                 }
             }
             System.out.println("]");
+            // make sure to remove the last ',' to complete the array for json.
         }
     }
 }
