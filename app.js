@@ -33,8 +33,8 @@ var app = new Vue({
             }
         },
         validateQuery: function(){
-            var validationRegex = new RegExp("^[a-z\?\*]{5,10}$");
-            var validationRegexForExcludedLetters = new RegExp("^[a-z]{0,19}$");
+            var validationRegex = new RegExp(/^([a-z]\*?|\?){5}$/);
+            var validationRegexForExcludedLetters = new RegExp(/^[a-z]{0,19}$/);
             this.displayedMatches = []
             if(validationRegex.test(this.query.toLowerCase())
                 && validationRegexForExcludedLetters.test(this.excludeLetters.toLowerCase())){
