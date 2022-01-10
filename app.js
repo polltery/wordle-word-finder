@@ -5,7 +5,8 @@ var app = new Vue({
         query: "?????",
         excludeLetters: "",
         result: "Results will appear here",
-        displayedMatches: []
+        displayedMatches: [],
+        displayLength: 1000
     },
     methods:{
         search: function(event){
@@ -18,13 +19,13 @@ var app = new Vue({
                     var possibleWord = this.possibleWords[i];
                     if(queryRegex.test(possibleWord.toLowerCase())){
                         matches.push(possibleWord);
-                        if(this.displayedMatches.length < 100){
+                        if(this.displayedMatches.length < this.displayLength){
                             this.displayedMatches.push(possibleWord.toUpperCase())
                         }
                     }
                 }
                 if(matches.length > 0){
-                    this.result = "" + matches.length + " words matched.";
+                    this.result = "" + matches.length + " words matched, showing only " + this.displayLength + ".";
                 }else{
                     this.result = "No match.";
                 }
