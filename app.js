@@ -25,7 +25,10 @@ var app = new Vue({
                     }
                 }
                 if(matches.length > 0){
-                    this.result = "" + matches.length + " words matched, showing only " + this.displayLength + ".";
+                    this.result = "" + matches.length 
+                        + " words matched, showing " 
+                        + (this.displayLength < matches.length ? this.displayLength : matches.length) 
+                        + " results.";
                 }else{
                     this.result = "No match.";
                 }
