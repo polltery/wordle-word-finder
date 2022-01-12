@@ -44,8 +44,13 @@ var app = new Vue({
             return false;
         },
         buildQueryRegex: function(){
+            //
+            // Example query: D*??R*
+            // Returns: /^(?=.*[D])(?=.*[R])(?=[^D]..[^R].).....$/
+            //
             var queryRegex = "";
             var includeLetters = "";
+            var mustContainLetterRegex = "(?=.*$)";
             var includeLetterPositions = "";
             for (var i = 0; i < this.query.length; i++) {
                 var letter = this.query[i];
@@ -54,7 +59,7 @@ var app = new Vue({
                     includeLetterPositions += "."
                 }else{
                     if(i+1 <= this.query.length && this.query[i+1] === "*"){
-                        includeLetters += letter.toLowerCase();
+                        includeLetters += mustContainLetterRegex.replace("$", letter.toLowerCase());
                         includeLetterPositions += "[^" + letter.toLowerCase() + "]"
                         queryRegex += ".";
                         i += 1;
@@ -65,7 +70,7 @@ var app = new Vue({
                 }
             }
             var excludeRegex = this.excludeLetters.length > 0 ? "(?!.*[" + this.excludeLetters.toLowerCase() + "])" : "";     
-            var includeRegex = includeLetters.length > 0 ? "(?=.*[" + includeLetters.toLowerCase() + "])" : "";
+            var includeRegex = includeLetters.length > 0 ? includeLetters : "";
             var includeLetterPositionRegex = includeLetters.length > 0 ? "(?=" + includeLetterPositions + ")" : "";
             return new RegExp("^" + excludeRegex + includeRegex + includeLetterPositionRegex + queryRegex + "$");
         }
