@@ -76,3 +76,12 @@ var app = new Vue({
         }
     }
 })
+
+// bind Enter key to searchBtn
+var input = document.getElementById("query");
+input.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.getElementById("searchBtn").click();
+  }
+}); 
