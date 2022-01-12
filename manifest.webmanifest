@@ -1,0 +1,22 @@
+{
+    "short_name": "Wordle Finder",
+    "name": "Wordle Word Finder",
+    "icons": [
+      {
+        "src": "/icons/icon_192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/icons/icon_512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "background_color": "#90EE90",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#90EE90",
+    "description": "A word finder for the twitter meme game wordle."
+  }
