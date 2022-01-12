@@ -16,3 +16,15 @@ http-serve ./
 ```
 
 You can ignore the `Java` folder for time being, it was used to preprocess the dictionary.
+
+
+## Libraries used
+
+- Bootstrap 5.0.2 : https://getbootstrap.com/docs/5.0/getting-started/introduction/
+- Vue 2.0.0 : https://vuejs.org/v2/guide/
+
+## Progressive Web Apps (PWA)
+
+To learn more about PWA: 
+- https://web.dev/add-manifest/
+- https://developer.mozilla.org/en-US/docs/Web/Manifest
