@@ -11,6 +11,7 @@ var app = new Vue({
     methods:{
         search: function(event){
             this.result = "Validating...";
+            this.query = this.query.trim();
             if(this.validateQuery()){
                 this.result = "Searching...";
                 var matches = []
